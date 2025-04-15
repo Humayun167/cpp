@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+int main()
+{
+    FILE *inputFile;     FILE *outputFile;     char line[1000];     bool inCommentBlock = false; 
+        inputFile = fopen("test.txt", "r");
+        outputFile = fopen("output.txt", "w");
+
+        if (inputFile != NULL && outputFile != NULL)
+    {
+                while (fgets(line, sizeof(line), inputFile))
+        {
+            ");
+                        char *lineComment = strstr(line, "
+                        if (inCommentBlock)
+            {
+                                if (endComment)
+                {
+                    inCommentBlock = false;                                         strcpy(line, endComment + 2);
+                }
+                else
+                {
+                    continue;                 }
+            }
+
+                        if (startComment && (!lineComment || startComment < lineComment))
+            {
+                inCommentBlock = true;                 *startComment = '\0';             }
+                        else if (lineComment)
+            {
+                *lineComment = '\0';             }
+
+                        if (!inCommentBlock && strlen(line) > 0)
+            {
+                                fprintf(outputFile, "%s", line);
+            }
+        }
+                fclose(inputFile);
+                fclose(outputFile);
+    }
+    else
+    {
+                printf("file open failed\n");
+    }
+
+    return 0; }
